@@ -1,9 +1,11 @@
 package com.example.gitclient;
 
+import org.eclipse.egit.github.core.service.CommitService;
+import org.eclipse.egit.github.core.service.ContentsService;
+import org.eclipse.egit.github.core.service.RepositoryService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication
@@ -14,11 +16,19 @@ public class GitClientApplication {
         SpringApplication.run(GitClientApplication.class, args);
     }
 
+    @Bean
+    public RepositoryService repositoryService(){
+        return new RepositoryService();
+    }
 
-    @GetMapping("/info/{user}/{repo}")
-    public String info(@PathVariable("user") String user, @PathVariable("repo") String repo){
-        return null;
+    @Bean
+    public ContentsService contentsService(){
+        return new ContentsService();
+    }
 
+    @Bean
+    public CommitService commitService(){
+        return new CommitService();
     }
 }
 
